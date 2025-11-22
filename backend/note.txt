@@ -1,0 +1,5 @@
+docker build -t ikhwan17/fruit-classification-api .
+docker login
+docker tag ikhwan17/fruit-classification-api:latest
+docker push ikhwan17/fruit-classification-api:latest
+docker run -d -p 8000:8000 --name fruit-api ikhwan17/fruit-classification-api:latest

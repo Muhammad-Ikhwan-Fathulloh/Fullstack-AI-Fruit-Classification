@@ -1,43 +1,22 @@
-# ============================================================
-#            BASE IMAGE RESMI TENSORFLOW (CPU)
-# ============================================================
+# Gunakan image resmi TensorFlow (sudah ada TF, numpy, dll)
 FROM tensorflow/tensorflow:2.10.0
 
-# ============================================================
-#            SET WORKING DIRECTORY
-# ============================================================
+# Install dependencies tambahan
+RUN apt-get update && apt-get install -y \
+    libgl1 \
+    libglu1-mesa \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
-# ============================================================
-#      INSTALL LIBRARY SYSTEM YANG DIBUTUHKAN PILLOW
-# ============================================================
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    libgl1 \
-    libglib2.0-0 \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# ============================================================
-#                  COPY REQUIREMENTS
-# ============================================================
 COPY requirements.txt .
 
-# ============================================================
-#                INSTALL PYTHON DEPENDENCIES
-# ============================================================
-RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+# Install FastAPI, Uvicorn, Pillow, dll
+RUN pip install --no-cache-dir -r requirements.txt
 
-# ============================================================
-#                  COPY APP FILES
-# ============================================================
 COPY . .
 
-# ============================================================
-#                  EXPOSE PORT
-# ============================================================
 EXPOSE 8000
 
-# ============================================================
-#              START FASTAPI VIA UVICORN
-# ============================================================
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
