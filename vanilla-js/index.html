@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fruit Classifier AI</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-content">
+      <h1>🍎 Fruit Classifier AI</h1>
+      <p>Unggah gambar buah untuk diklasifikasikan oleh model AI</p>
+    </div>
+  </header>
+
+  <main class="app-main">
+    <div class="container">
+
+      <!-- Upload Section -->
+      <div class="section-card">
+        <h2>📤 Upload Gambar Buah</h2>
+
+        <div id="upload-area" class="upload-area">
+          <input type="file" id="file-input" accept="image/*" class="file-input" />
+          <label for="file-input" class="upload-label">
+            <div class="upload-content">
+              <span class="upload-icon">📁</span>
+              <p><strong>Klik untuk memilih file</strong> atau drag & drop di sini</p>
+              <small>Format: JPG, PNG, JPEG | Maksimal: 10MB</small>
+            </div>
+          </label>
+        </div>
+
+        <div id="error-message" class="error-message" style="display: none;"></div>
+
+        <!-- Preview -->
+        <div id="preview-section" class="preview-section" style="display: none;">
+          <h3>🖼️ Preview Gambar</h3>
+          <div class="preview-container">
+            <img id="preview-image" class="preview-image" />
+            <div class="preview-actions">
+              <button id="predict-btn" class="predict-btn">🔮 Prediksi Buah</button>
+              <button id="reset-btn" class="reset-btn">🔄 Ganti Gambar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Section -->
+      <div id="result-section" class="result-section" style="display: none;">
+        <div class="section-card">
+          <h2>🎯 Hasil Prediksi</h2>
+          <div class="prediction-card">
+            <div class="prediction-main">
+              <div id="confidence-badge" class="confidence-badge"></div>
+              <h3 id="predicted-fruit" class="predicted-fruit"></h3>
+              <p id="filename" class="filename"></p>
+            </div>
+
+            <div class="all-predictions">
+              <h4>📊 Semua Kemungkinan:</h4>
+              <div id="prediction-list" class="prediction-list"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Instruction Section -->
+      <div id="info-section" class="info-section">
+        <div class="section-card">
+          <h3>💡 Cara Menggunakan</h3>
+          <div class="instructions">
+            <div class="instruction-item"><span class="step-number">1</span> Pilih atau drag & drop gambar buah</div>
+            <div class="instruction-item"><span class="step-number">2</span> Pastikan gambar jelas</div>
+            <div class="instruction-item"><span class="step-number">3</span> Klik "Prediksi Buah"</div>
+            <div class="instruction-item"><span class="step-number">4</span> Tunggu hasil prediksi</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <p>Dibuat dengan ❤️ menggunakan HTML, CSS & JS + FastAPI | Fruit Classifier AI</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
